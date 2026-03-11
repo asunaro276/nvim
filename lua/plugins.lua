@@ -44,6 +44,7 @@ return packer.startup(function(use)
 
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" }) -- Common utilities
+	use({ "folke/snacks.nvim" })
 
 	-- Colorschemes
 	use({ "EdenEast/nightfox.nvim" }) -- Color scheme
@@ -68,9 +69,16 @@ return packer.startup(function(use)
 
 	-- LSP
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
-	use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
+	use({ "williamboman/mason.nvim" }) -- LSP installer
+	use({ "williamboman/mason-lspconfig.nvim" }) -- mason-lspconfig bridge
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
 	use({ "glepnir/lspsaga.nvim" }) -- LSP UIs
+
+	-- File manager
+	use({
+		"mikavilpas/yazi.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	-- Formatter
 	use({ "MunifTanjim/prettier.nvim" })
