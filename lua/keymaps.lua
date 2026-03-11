@@ -38,7 +38,12 @@ keymap('n', '<C-p>', ':Telescope find_files<CR>', { silent = true })
 keymap('n', '<C-f>', ':Telescope live_grep<CR>', { silent = true })
 
 -- <C-\>: ターミナルトグル (VS Code Cmd+`)
-keymap('n', '<C-\\>', ':terminal<CR>', { silent = true })
+vim.keymap.set('n', '<C-\\>', function() Snacks.terminal.toggle() end, { silent = true })
+
+
+-- ウィンドウ移動
+keymap('n', '<C-j>', '<C-w>j', { silent = true })
+keymap('n', '<C-k>', '<C-w>k', { silent = true })
 
 -- <leader>g: Lazygit
 vim.keymap.set('n', '<leader>g', function() Snacks.lazygit() end, { silent = true })
