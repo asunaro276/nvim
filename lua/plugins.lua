@@ -92,12 +92,33 @@ return packer.startup(function(use)
 
 	use({ "windwp/nvim-ts-autotag" })
 
+	-- コメントトグル（Vue等の埋め込み言語対応）
+	use({ "numToStr/Comment.nvim" })
+	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+
+	-- ctags 自動更新
+	use({ "ludovicchabant/vim-gutentags" })
+
+	-- CSV カラーハイライト
+	use({ "mechatroner/rainbow_csv" })
+
 	-- Claude Code
 	use({
 		"greggh/claude-code.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("configs.claude_code")
+		end,
+	})
+
+	-- Git blame
+	use({ "APZelos/blamer.nvim" })
+
+	-- vim-test
+	use({
+		"vim-test/vim-test",
+		config = function()
+			require("configs.vim_test")
 		end,
 	})
 

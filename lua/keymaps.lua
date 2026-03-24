@@ -6,6 +6,19 @@ local keymap = vim.api.nvim_set_keymap
 keymap('n', '<CR>', 'o<ESC>', { silent = true })
 keymap('n', '<S-CR>', 'O<ESC>', { silent = true })
 keymap('n', 'gv', 'gT', { silent = true })
+
+-- タブ切り替え
+keymap('n', '<Tab>', 'gt', { silent = true })
+keymap('n', '<S-Tab>', 'gT', { silent = true })
+
+-- タブを閉じる（最後のタブなら終了）
+vim.keymap.set('n', '<C-w>', function()
+  if vim.fn.tabpagenr('$') == 1 then
+    vim.cmd('q')
+  else
+    vim.cmd('tabclose')
+  end
+end, { silent = true })
 keymap('n', 'j', 'gj', { silent = true })
 keymap('n', 'k', 'gk', { silent = true })
 keymap('n', '<S-h>', '0', { silent = true })
@@ -47,3 +60,29 @@ keymap('n', '<C-k>', '<C-w>k', { silent = true })
 
 -- <leader>g: Lazygit
 vim.keymap.set('n', '<leader>g', function() Snacks.lazygit() end, { silent = true })
+
+-- <F12>: タグジャンプ (VS Code F12 定義へ移動) - 新しいタブで開く
+vim.keymap.set('n', '<F12>', function()
+  vim.cmd('tab tag ' .. vim.fn.expand('<cword>'))
+end, { silent = true })
+vim.keymap.set('n', '<C-]>', function()
+  vim.cmd('tab tag ' .. vim.fn.expand('<cword>'))
+end, { silent = true })
+keymap('n', '<S-F12>', '<C-t>', { silent = true })
+
+-- <leader>b: git blame トグル
+keymap('n', '<leader>b', ':BlamerToggle<CR>', opts)
+
+-- vim-test キーバインド
+keymap('n', '<leader>tn', ':TestNearest<CR>', opts)
+keymap('n', '<leader>tf', ':TestFile<CR>', opts)
+keymap('n', '<leader>ts', ':TestSuite<CR>', opts)
+keymap('n', '<leader>tl', ':TestLast<CR>', opts)
+keymap('n', '<leader>tv', ':TestVisit<CR>', opts)
+
+-- <C-/>: コメントトグル (VS Code Ctrl+/)
+-- ※ターミナルによっては <C-/> が <C-_> として送られるため両方設定
+vim.keymap.set('n', '<C-/>', 'gcc', { remap = true, silent = true })
+vim.keymap.set('v', '<C-/>', 'gc', { remap = true, silent = true })
+vim.keymap.set('n', '<C-_>', 'gcc', { remap = true, silent = true })
+vim.keymap.set('v', '<C-_>', 'gc', { remap = true, silent = true })
