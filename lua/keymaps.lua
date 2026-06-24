@@ -41,8 +41,7 @@ keymap('', 'k', 'gk', { silent = true })
 keymap('n', '<Space>s', ':source $HOME/AppData/Local/nvim/init.lua<CR>', { silent = true })
 
 -- VS Codeライクなキーバインド
--- <C-b>: yazi ファイラー (VS Code Cmd+B)
-keymap('n', '<C-b>', ':Yazi<CR>', { silent = true })
+-- <C-b>: fern サイドバートグル（fern.lua で定義）
 
 -- <C-p>: Telescope ファイル検索 (VS Code Cmd+P)
 keymap('n', '<C-p>', ':Telescope find_files<CR>', { silent = true })
@@ -61,14 +60,13 @@ keymap('n', '<C-k>', '<C-w>k', { silent = true })
 -- <leader>g: Lazygit
 vim.keymap.set('n', '<leader>g', function() Snacks.lazygit() end, { silent = true })
 
--- <F12>: タグジャンプ (VS Code F12 定義へ移動) - 新しいタブで開く
-vim.keymap.set('n', '<F12>', function()
-  vim.cmd('tab tag ' .. vim.fn.expand('<cword>'))
-end, { silent = true })
+-- <F12>: LSP 定義ジャンプ (VS Code F12 定義へ移動)
+vim.keymap.set('n', '<F12>', vim.lsp.buf.definition, { silent = true })
+-- <C-]>: ctags ジャンプ（LSP 未対応ファイル向け）
 vim.keymap.set('n', '<C-]>', function()
   vim.cmd('tab tag ' .. vim.fn.expand('<cword>'))
 end, { silent = true })
-keymap('n', '<S-F12>', '<C-t>', { silent = true })
+vim.keymap.set('n', '<S-F12>', vim.lsp.buf.references, { silent = true })
 
 -- <leader>b: git blame トグル
 keymap('n', '<leader>b', ':BlamerToggle<CR>', opts)

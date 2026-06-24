@@ -74,10 +74,20 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Comment.nvim"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
+  },
+  ["blamer.nvim"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/blamer.nvim",
+    url = "https://github.com/APZelos/blamer.nvim"
   },
   ["bufferline.nvim"] = {
     loaded = true,
@@ -150,10 +160,10 @@ _G.packer_plugins = {
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim"
   },
-  ["null-ls.nvim"] = {
+  ["none-ls.nvim"] = {
     loaded = true,
-    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
+    url = "https://github.com/nvimtools/none-ls.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -180,6 +190,11 @@ _G.packer_plugins = {
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
   },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -200,6 +215,11 @@ _G.packer_plugins = {
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
   },
+  rainbow_csv = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/rainbow_csv",
+    url = "https://github.com/mechatroner/rainbow_csv"
+  },
   ["snacks.nvim"] = {
     loaded = true,
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/snacks.nvim",
@@ -215,10 +235,41 @@ _G.packer_plugins = {
     path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["yazi.nvim"] = {
+  ["vim-fern"] = {
     loaded = true,
-    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/yazi.nvim",
-    url = "https://github.com/mikavilpas/yazi.nvim"
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-fern",
+    url = "https://github.com/lambdalisue/vim-fern"
+  },
+  ["vim-fern-git-status"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-fern-git-status",
+    url = "https://github.com/lambdalisue/vim-fern-git-status"
+  },
+  ["vim-fern-renderer-nerdfont"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-fern-renderer-nerdfont",
+    url = "https://github.com/lambdalisue/vim-fern-renderer-nerdfont"
+  },
+  ["vim-glyph-palette"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-glyph-palette",
+    url = "https://github.com/lambdalisue/vim-glyph-palette"
+  },
+  ["vim-gutentags"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-gutentags",
+    url = "https://github.com/ludovicchabant/vim-gutentags"
+  },
+  ["vim-nerdfont"] = {
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-nerdfont",
+    url = "https://github.com/lambdalisue/vim-nerdfont"
+  },
+  ["vim-test"] = {
+    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21configs.vim_test\frequire\0" },
+    loaded = true,
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/vim-test",
+    url = "https://github.com/vim-test/vim-test"
   }
 }
 
@@ -227,6 +278,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for claude-code.nvim]], true)
 try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24configs.claude_code\frequire\0", "config", "claude-code.nvim")
 time([[Config for claude-code.nvim]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21configs.vim_test\frequire\0", "config", "vim-test")
+time([[Config for vim-test]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

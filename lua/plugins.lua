@@ -71,14 +71,15 @@ return packer.startup(function(use)
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	use({ "williamboman/mason.nvim" }) -- LSP installer
 	use({ "williamboman/mason-lspconfig.nvim" }) -- mason-lspconfig bridge
-	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
+	use({ "nvimtools/none-ls.nvim" }) -- for formatters and linters
 	use({ "glepnir/lspsaga.nvim" }) -- LSP UIs
 
-	-- File manager
-	use({
-		"mikavilpas/yazi.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
+	-- Sidebar file tree
+	use({ "lambdalisue/vim-fern" })
+	use({ "lambdalisue/vim-fern-git-status" })
+	use({ "lambdalisue/vim-nerdfont" })
+	use({ "lambdalisue/vim-fern-renderer-nerdfont" })
+	use({ "lambdalisue/vim-glyph-palette" })
 
 	-- Formatter
 	use({ "MunifTanjim/prettier.nvim" })

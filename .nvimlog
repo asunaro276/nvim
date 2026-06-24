@@ -1,0 +1,2 @@
+WRN 2026-03-23T21:32:59.043 ?.92429    server_start:199: Failed to start server: operation not permitted: /tmp/claude/nvim.ryuhei.nakano/uMLh7B/nvim.92429.0
+WRN 2026-03-23T21:33:01.010 ?.92472    server_start:199: Failed to start server: operation not permitted: /tmp/claude/nvim.ryuhei.nakano/PTff2Q/nvim.92472.0

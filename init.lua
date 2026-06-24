@@ -13,9 +13,9 @@ local function safe_require(mod)
 end
 
 safe_require("configs.snacks")
+safe_require("configs.fern")
 safe_require("configs.mason")
 safe_require("configs.lsp")
-safe_require("configs.yazi")
 safe_require("configs.telescope")
 safe_require("configs.treesitter")
 safe_require("configs.gutentags")
