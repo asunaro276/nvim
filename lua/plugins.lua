@@ -73,6 +73,7 @@ return packer.startup(function(use)
 	use({ "williamboman/mason-lspconfig.nvim" }) -- mason-lspconfig bridge
 	use({ "nvimtools/none-ls.nvim" }) -- for formatters and linters
 	use({ "glepnir/lspsaga.nvim" }) -- LSP UIs
+	use({ "rmagatti/goto-preview" })
 
 	-- Sidebar file tree
 	use({ "lambdalisue/vim-fern" })
@@ -80,6 +81,7 @@ return packer.startup(function(use)
 	use({ "lambdalisue/vim-nerdfont" })
 	use({ "lambdalisue/vim-fern-renderer-nerdfont" })
 	use({ "lambdalisue/vim-glyph-palette" })
+	use({ "lambdalisue/fern-mapping-mark-children.vim" })
 
 	-- Formatter
 	use({ "MunifTanjim/prettier.nvim" })

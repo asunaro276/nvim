@@ -9,16 +9,25 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+
+
 -- fern が閉じてしまった場合に再表示するための保護
 -- ウィンドウが fern だけになったら新しいバッファを開く
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
-    local wins = vim.api.nvim_list_wins()
-    if #wins == 1 then
-      local buf = vim.api.nvim_win_get_buf(wins[1])
-      if vim.bo[buf].filetype == "fern" then
-        vim.cmd("enew")
-      end
+    local function only_fern()
+      local wins = vim.tbl_filter(function(w)
+        return vim.api.nvim_win_get_config(w).relative == ""
+      end, vim.api.nvim_list_wins())
+      if #wins ~= 1 then return false end
+      return vim.bo[vim.api.nvim_win_get_buf(wins[1])].filetype == "fern"
+    end
+    if only_fern() then
+      vim.defer_fn(function()
+        if only_fern() then
+          vim.cmd("enew")
+        end
+      end, 50)
     end
   end,
 })
@@ -52,7 +61,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- サイドバーをトグルする共通関数
 local function toggle_fern()
   -- fern ウィンドウが開いているか確認
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
     local buf = vim.api.nvim_win_get_buf(win)
     if vim.bo[buf].filetype == "fern" then
       vim.cmd("Fern . -reveal=% -drawer -toggle -width=30 -keep")
@@ -66,13 +75,29 @@ end
 vim.keymap.set("n", "<C-n>", toggle_fern, { silent = true })
 vim.keymap.set("n", "<C-b>", toggle_fern, { silent = true })
 
--- <C-0> でサイドバーにフォーカス
-vim.keymap.set("n", "<C-0>", function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
+local function focus_fern()
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
     local buf = vim.api.nvim_win_get_buf(win)
     if vim.bo[buf].filetype == "fern" then
       vim.api.nvim_set_current_win(win)
       return
     end
   end
-end, { silent = true })
+end
+
+local function focus_file()
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].filetype ~= "fern" and vim.api.nvim_win_get_config(win).relative == "" then
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+end
+
+vim.keymap.set("n", "<leader>0", focus_fern, { silent = true })
+vim.keymap.set("n", "<C-0>", focus_fern, { silent = true })
+vim.keymap.set("n", "\x1b[0;5~", focus_fern, { silent = true })
+vim.keymap.set("n", "<leader>1", focus_file, { silent = true })
+vim.keymap.set("n", "<C-1>", focus_file, { silent = true })
+vim.keymap.set("n", "\x1b[1;5~", focus_file, { silent = true })

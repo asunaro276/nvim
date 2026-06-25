@@ -4,14 +4,16 @@ if ok then
   capabilities = cmp_nvim_lsp.default_capabilities()
 end
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  client.server_capabilities.documentHighlightProvider = false
+  vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<S-F12>", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+  vim.keymap.set("n", "<F24>", "<cmd>Telescope lsp_references<CR>", opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
 end
 
 -- ts_ls: Vue TypeScript プラグインを追加

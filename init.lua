@@ -19,6 +19,7 @@ safe_require("configs.lsp")
 safe_require("configs.telescope")
 safe_require("configs.treesitter")
 safe_require("configs.gutentags")
+safe_require("configs.goto_preview")
 
 -- コメントトグル（Vue等の埋め込み言語対応）
 local ctx_ok, ctx = pcall(require, "ts_context_commentstring")
