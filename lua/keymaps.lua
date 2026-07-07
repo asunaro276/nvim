@@ -83,9 +83,15 @@ vim.keymap.set('n', '<leader>g', function() Snacks.lazygit() end, { silent = tru
 
 -- <F12>: LSP 定義ジャンプ (VS Code F12 定義へ移動)
 vim.keymap.set('n', '<F12>', telescope_lsp("lsp_definitions"), { silent = true })
--- <C-]>: ctags ジャンプ（LSP 未対応ファイル向け）
+-- <C-]>: ctags ジャンプ（LSP 未対応ファイル向け）。定義先が同一ファイルならタブを開かない
 vim.keymap.set('n', '<C-]>', function()
-  vim.cmd('tab tag ' .. vim.fn.expand('<cword>'))
+  local cword = vim.fn.expand('<cword>')
+  local ok, tags = pcall(vim.fn.taglist, '^' .. cword .. '$')
+  if ok and #tags > 0 and vim.fn.fnamemodify(tags[1].filename, ':p') == vim.fn.expand('%:p') then
+    vim.cmd('tag ' .. cword)
+  else
+    vim.cmd('tab tag ' .. cword)
+  end
 end, { silent = true })
 vim.keymap.set('n', '<F24>', telescope_lsp("lsp_references"), { silent = true })
 

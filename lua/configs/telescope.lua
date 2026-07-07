@@ -35,6 +35,14 @@ local function open_in_tab(prompt_bufnr)
   if not selection then return end
   local filename = selection.path or selection.filename
   if not filename then return end
+  -- 選択先が現在開いているファイルなら新規タブを開かずカーソル移動のみ行う
+  if vim.fn.fnamemodify(filename, ":p") == vim.fn.expand("%:p") then
+    if selection.lnum then
+      vim.cmd("normal! m'") -- <C-o> で戻れるようジャンプリストに現在位置を積む
+      pcall(vim.api.nvim_win_set_cursor, 0, { selection.lnum, (selection.col or 1) - 1 })
+    end
+    return
+  end
   pcall(vim.cmd, "tabedit " .. vim.fn.fnameescape(filename))
   if selection.lnum then
     pcall(vim.api.nvim_win_set_cursor, 0, { selection.lnum, (selection.col or 1) - 1 })
@@ -73,7 +81,9 @@ require("telescope").setup({
       hidden = true,
       find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git", "--exclude", "node_modules" },
     },
-    lsp_references = { jump_type = "tab" },
-    lsp_definitions = { jump_type = "tab" },
+    -- reuse_win=true: ジャンプ先が現在のファイルならタブを開かず現在ウィンドウ内で移動する。
+    -- "tab drop": 別ファイルでも既にタブで開いていればそのタブを再利用する(tabeditだと重複タブができる)
+    lsp_references = { jump_type = "tab drop", reuse_win = true },
+    lsp_definitions = { jump_type = "tab drop", reuse_win = true },
   },
 })
