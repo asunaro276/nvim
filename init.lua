@@ -15,6 +15,7 @@ end
 safe_require("configs.snacks")
 safe_require("configs.fern")
 safe_require("configs.mason")
+safe_require("configs.cmp")
 safe_require("configs.lsp")
 safe_require("configs.telescope")
 safe_require("configs.treesitter")
