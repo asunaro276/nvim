@@ -55,3 +55,12 @@ autocmd({ "BufReadPost" }, {
 		vim.api.nvim_exec('silent! norml! g`"zv', false)
 	end,
 })
+
+-- markdownファイルは折り返し表示にする
+autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+	end,
+})

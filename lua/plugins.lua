@@ -125,6 +125,15 @@ return packer.startup(function(use)
 		end,
 	})
 
+	-- Markdown レンダリング
+	use({
+		"MeanderingProgrammer/render-markdown.nvim",
+		requires = { "nvim-treesitter/nvim-treesitter", "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("configs.render_markdown")
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
