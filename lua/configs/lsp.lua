@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-local servers = { "lua_ls", "cssls", "html", "vue_ls" }
+local servers = { "lua_ls", "cssls", "html", "vue_ls", "gopls" }
 for _, server in ipairs(servers) do
   vim.lsp.config[server] = {
     on_attach = on_attach,
