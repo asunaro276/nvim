@@ -32,6 +32,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- fern はツリー表示で行番号を使わないので非表示にする
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "fern",
+  callback = function()
+    vim.opt_local.number = false
+  end,
+})
+
 -- fern バッファのキーマップ
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "fern",
@@ -47,6 +55,28 @@ vim.api.nvim_create_autocmd("FileType", {
         "n", false
       )
     end, { buffer = true })
+
+    -- vimの操作感に寄せる（<Plug>経由なのでremap必須）
+    local vim_like_opts = { buffer = true, remap = true, silent = true }
+    vim.keymap.set("n", "r", "<Plug>(fern-action-rename)", vim_like_opts)
+    vim.keymap.set("n", "A", "<Plug>(fern-action-new-dir)", vim_like_opts)
+    vim.keymap.set("n", "y", "<Plug>(fern-action-clipboard-copy)", vim_like_opts)
+    vim.keymap.set("n", "p", "<Plug>(fern-action-clipboard-paste)", vim_like_opts)
+    vim.keymap.set("n", "d", "<Plug>(fern-action-trash)", vim_like_opts)
+    -- fern標準のaction-choiceメニューを "g?" に退避し、"a" をファイル新規作成に使う
+    -- （<Space>はmapleaderで<leader>系のプレフィックスとして使っているため避ける、
+    -- 　"?" はfernのヘルプ表示のままにしておく）
+    -- action-choiceへのマッピングを先に用意しておくと、直後に走る
+    -- fern#action#_init() 内の hasmapto() ガードが効いて "a" が上書きされなくなる
+    vim.keymap.set("n", "g?", "<Plug>(fern-action-choice)", vim_like_opts)
+    vim.keymap.set("n", "a", "<Plug>(fern-action-new-file)", vim_like_opts)
+
+    -- u: trash-put で消したファイルを一覧から選んで復元する（trash-restoreは日付降順で並ぶ）
+    vim.keymap.set("n", "u", function()
+      vim.cmd("botright new")
+      vim.cmd("terminal trash-restore")
+      vim.cmd("startinsert")
+    end, { buffer = true, silent = true })
   end,
 })
 
