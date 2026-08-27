@@ -233,7 +233,7 @@ _G.packer_plugins = {
   ["render-markdown.nvim"] = {
     config = { "\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28configs.render_markdown\frequire\0" },
     loaded = true,
-    path = "/home/ryuhei/.local/share/nvim/site/pack/packer/start/render-markdown.nvim",
+    path = "/Users/ryuhei.nakano/.local/share/nvim/site/pack/packer/start/render-markdown.nvim",
     url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
   },
   ["snacks.nvim"] = {
@@ -294,14 +294,14 @@ time([[Defining packer_plugins]], false)
 time([[Config for vim-test]], true)
 try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21configs.vim_test\frequire\0", "config", "vim-test")
 time([[Config for vim-test]], false)
--- Config for: claude-code.nvim
-time([[Config for claude-code.nvim]], true)
-try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24configs.claude_code\frequire\0", "config", "claude-code.nvim")
-time([[Config for claude-code.nvim]], false)
 -- Config for: render-markdown.nvim
 time([[Config for render-markdown.nvim]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28configs.render_markdown\frequire\0", "config", "render-markdown.nvim")
 time([[Config for render-markdown.nvim]], false)
+-- Config for: claude-code.nvim
+time([[Config for claude-code.nvim]], true)
+try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24configs.claude_code\frequire\0", "config", "claude-code.nvim")
+time([[Config for claude-code.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

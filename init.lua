@@ -12,6 +12,7 @@ local function safe_require(mod)
   end
 end
 
+safe_require("configs.colorscheme")
 safe_require("configs.snacks")
 safe_require("configs.fern")
 safe_require("configs.mason")
